@@ -24,6 +24,7 @@ exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body)
         await user.save()
+        console.log(user, 'it went through')
         const token = await user.generateAuthToken()
         res.json({ user, token })
 
@@ -44,6 +45,28 @@ exports.loginUser = async (req, res) => {
             const token = await user.generateAuthToken()
             res.json({ user, token })
         }
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}
+
+exports.updateUser = async (req, res) => {
+    try {
+        // make all the keys into an array so we can update the values which have changed
+        const updates = Object.keys.apply(req.body)
+        updates.forEach(update => req.user[update] = req.body[update])
+        await req.user.save()
+        //send updated user array back to the database
+        res.json(user)
+    } catch(error) {
+        res.status(400).jsom({ message: error.message })
+    }
+}
+
+exports.deleteUser = async (req, res) => {
+    try {
+        await req.user.deleteOne()
+        res.sendStatus(204)
     } catch (error) {
         res.status(400).json({ message: error.message })
     }

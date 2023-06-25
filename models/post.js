@@ -1,9 +1,12 @@
-const { model, Schema } = required('mongoose')
+require('dotenv').config()
+const mongoose = require('mongoose')
+const { model, Schema } = require('mongoose')
 
-const postSchema = new Schema ({ 
+
+const postSchema = new mongoose.Schema ({ 
     title: { type: String, required: true},
-    completed: { type: Boolean, required: true },
-    // link the Posts to a specific user
+    body: { type: String, required: true },
+    // link the posts to a specific user
     user: { type: Schema.Types.ObjectId, required: true, ref: 'User' }
 }, {
     timestamps: true
@@ -11,4 +14,4 @@ const postSchema = new Schema ({
 
 const Post = model('Post', postSchema)
 
-module.export = Post
+module.exports = Post
