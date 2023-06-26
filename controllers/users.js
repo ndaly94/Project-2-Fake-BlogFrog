@@ -24,7 +24,6 @@ exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body)
         await user.save()
-        console.log(user, 'it went through')
         const token = await user.generateAuthToken()
         res.json({ user, token })
 
@@ -36,7 +35,7 @@ exports.createUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         // search for the user based on email
-        const user = await User.findOne({ email: req.body.email })
+        const user = await User.findOne({ username: req.body.username })
         // if user doesnt exist or passowrd dont match send an error message
         if(!user || !await bcrypt.compare(req.body.password, user.password)){
             throw new Error('Invalid Login')

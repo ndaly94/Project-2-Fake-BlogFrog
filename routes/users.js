@@ -3,7 +3,7 @@ const router = express.Router()
 const userController = require('../controllers/users')
 
 //create a new user at /
- router.post('/', userController.createUser)
+router.post('/', userController.createUser)
 //login an existing user
 router.post('/login', userController.loginUser)
 // update an existing user based on ID
