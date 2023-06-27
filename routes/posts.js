@@ -4,14 +4,14 @@ const postController = require('../controllers/posts')
 const userController = require('../controllers/users')
 
 //create a new post
-router.post('/posts', userController.auth, postController.createNewPost)
+router.post('/', userController.auth, postController.createNewPost)
 //Index of all posts
-router.get('/posts', userController.auth, postController.indexPosts)
+router.get('/', userController.auth, postController.indexPosts)
 //Show a specific post based on the ID
-router.get('/posts/:id', userController.auth, postController.showOnePost)
+router.get('/:id', userController.auth, postController.showOnePost)
 //update a post based on id 
-router.put('/posts/:id', userController.auth, postController.updatePosts)
+router.put('/:id', userController.auth, postController.updatePosts)
 //Delete a selected post at /posts/:id
-router.delete('/posts/:id', userController.auth, postController.deletePost)
+router.delete('/:id', userController.auth, postController.deletePost)
 
 module.exports = router

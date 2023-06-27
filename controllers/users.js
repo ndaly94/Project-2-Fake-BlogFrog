@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
     try {
         const user = new User(req.body)
         await user.save()
-        const token = await user.generateAuthToken()
+     //   const token = await user.generateAuthToken()
         res.json({ user, token })
 
     } catch(error) {
@@ -51,8 +51,8 @@ exports.loginUser = async (req, res) => {
 
 exports.getUserById = async (req, res) => {
     try {
-        const foundUser = await User.findOne({_id: req.params._id})
-        res.render(foundUser)
+        const foundUser = await User.findOne({ _id: req.params.id })
+        res.json(foundUser)
     } catch (error){
         res.status(400).send({ message: error.message })
     }

@@ -2,6 +2,7 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 exports.createNewPost = async function (req, res){
+    console.log("its going through")
     try {
         console.log("its going through")
         req.body.user = req.user._id

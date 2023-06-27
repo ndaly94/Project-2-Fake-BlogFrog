@@ -5,7 +5,7 @@ const userController = require('../controllers/users')
 //create a new user at /
 router.post('/', userController.createUser)
 //get a user by ID
-router.get('/users/:id', userController.getUserById)
+router.get('/:id', userController.auth, userController.getUserById)
 //login an existing user
 router.post('/login', userController.loginUser)
 // update an existing user based on ID
