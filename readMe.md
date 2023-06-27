@@ -6,3 +6,13 @@ To start the app run 'npm start'
 
 
 https://trello.com/b/6nMpdnLV/blogfrog-project
+
+
+## Route Breakdown
+# User
+# ToDo
+
+
+## Controller Breakdown
+# User
+# ToDo

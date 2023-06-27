@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 exports.auth = async (req, res, next) => {
     try{
-        const token = req.header('Authorization').replace('Bearer', '')
+        const token = req.header('Authorization').replace('Bearer ', '')
         const data = jwt.verify(token, process.env.SECRET)
         const user = await User.findOne({ _id: data._id })
         if(!user){
@@ -35,7 +35,7 @@ exports.createUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     try {
         // search for the user based on email
-        const user = await User.findOne({ username: req.body.username })
+        const user = await User.findOne({ email: req.body.email })
         // if user doesnt exist or passowrd dont match send an error message
         if(!user || !await bcrypt.compare(req.body.password, user.password)){
             throw new Error('Invalid Login')
@@ -49,18 +49,27 @@ exports.loginUser = async (req, res) => {
     }
 }
 
-exports.updateUser = async (req, res) => {
+exports.getUserById = async (req, res) => {
     try {
-        // make all the keys into an array so we can update the values which have changed
-        const updates = Object.keys.apply(req.body)
-        updates.forEach(update => req.user[update] = req.body[update])
-        await req.user.save()
-        //send updated user array back to the database
-        res.json(user)
-    } catch(error) {
-        res.status(400).jsom({ message: error.message })
+        const foundUser = await User.findOne({_id: req.params._id})
+        res.render(foundUser)
+    } catch (error){
+        res.status(400).send({ message: error.message })
     }
 }
+
+exports.updateUser = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email })
+        const updates = Object.keys(req.body)
+        updates.forEach(update => req.user[update] = req.body[update])
+        await req.user.save()
+        res.json(user)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}
+
 
 exports.deleteUser = async (req, res) => {
     try {

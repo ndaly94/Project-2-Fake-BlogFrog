@@ -1,9 +1,7 @@
-require('dotenv').config()
-const mongoose = require('mongoose')
 const { model, Schema } = require('mongoose')
 
 
-const postSchema = new mongoose.Schema ({ 
+const postSchema = new Schema ({ 
     title: { type: String, required: true},
     body: { type: String, required: true },
     // link the posts to a specific user
