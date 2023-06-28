@@ -28,8 +28,8 @@ exports.indexPosts = async function(req, res){
 
 exports.showOnePost = async function (req, res){
     try {
-        const post = await Post.find( { _id: req.user.id })
-        res.json(posts)
+        const post = await Post.findOne( { _id: req.params.id })
+        res.json(post)
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
@@ -37,18 +37,17 @@ exports.showOnePost = async function (req, res){
 
 
 exports.updatePosts = async function(req, res){
-    try {
-        console.log('its running')
-        const post = await Post.findByIdAndUpdate( { _id: req.params._id}, req.body, { new: true })
+    try{
+        const post = await Post.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
         res.json(post)
-    } catch (error) {
+    } catch(error){
         res.status(400).json({ message: error.message })
     }
 }
 
 exports.deletePost = async function(req, res){
     try {
-        const post = await Post.findByIdAndDelete({ _id: req.params._id})
+        const post = await Post.findByIdAndDelete({ _id: req.params.id})
         res.sendStatus(204)
     }catch(error){
         res.status(400).json({ message: error.message })

@@ -10,9 +10,9 @@ router.get('/', userController.indexUsers)
 router.get('/:id', userController.auth, userController.getUserById)
 //login an existing user (WORKS)
 router.post('/login', userController.loginUser)
-// update an existing user based on ID 
+// update an existing user based on ID (WORKS)
 router.put('/:id', userController.auth, userController.updateUser)
-// delete a user
+// delete a user (WORKS)
 router.delete('/:id', userController.auth, userController.deleteUser)
 
 module.exports = router
