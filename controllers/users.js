@@ -49,6 +49,15 @@ exports.loginUser = async (req, res) => {
     }
 }
 
+exports.indexUsers = async function(req, res){
+    try {
+        const users = await User.find( { user: req.user })
+        res.json(users)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+}
+
 exports.getUserById = async (req, res) => {
     try {
         const foundUser = await User.findOne({ _id: req.params.id })
@@ -57,6 +66,7 @@ exports.getUserById = async (req, res) => {
         res.status(400).send({ message: error.message })
     }
 }
+
 
 exports.updateUser = async (req, res) => {
     try {

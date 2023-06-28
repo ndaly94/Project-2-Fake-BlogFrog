@@ -2,7 +2,6 @@ const Post = require('../models/post')
 const User = require('../models/user')
 
 exports.createNewPost = async function (req, res){
-    console.log("its going through")
     try {
         console.log("its going through")
         req.body.user = req.user._id
@@ -20,7 +19,7 @@ exports.createNewPost = async function (req, res){
 // create code to index all of the posts created
 exports.indexPosts = async function(req, res){
     try {
-        const post = await Post.find( { user: req.user._id })
+        const posts = await Post.find( { user: req.user._id })
         res.json(posts)
     } catch (error) {
         res.status(400).json({ message: error.message })
@@ -29,7 +28,7 @@ exports.indexPosts = async function(req, res){
 
 exports.showOnePost = async function (req, res){
     try {
-        const post = await Post.find( { _id: req.user._id })
+        const post = await Post.find( { _id: req.user.id })
         res.json(posts)
     } catch (error) {
         res.status(400).json({ message: error.message })
