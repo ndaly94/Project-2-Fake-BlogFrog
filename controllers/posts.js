@@ -3,7 +3,6 @@ const User = require('../models/user')
 
 exports.createNewPost = async function (req, res){
     try {
-        console.log("its going through")
         req.body.user = req.user._id
         const post = await Post.create(req.body)
         req.user.posts?
