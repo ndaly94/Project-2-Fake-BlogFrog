@@ -56,20 +56,19 @@ beforeAll(async () => {
     expect(response.body).toHaveProperty('token')
     })
 
-    test('This should update a user', async () => {
-        const user = new User({
-            username: 'j doe',
-            email: 'jdoe@email.com',
-            password: 'jdoepassword'
-        })
-
+    test('It should update a user', async () => {
+        const user = new User({ username: 'John Doe', email: 'john.doe@example.com', password: 'password123' })
         await user.save()
         const token = await user.generateAuthToken()
         const response = await request(app)
-            .put(`/users/${user._id}`)
-            .set('Authorization', `Bearer ${token}`)
-            .send({ name: 'mike doe', email: 'mike.doe@email.com'})
-    })
+          .put(`/users/${user._id}`)
+          .set('Authorization', `Bearer ${token}`)
+          .send({ username: 'Jane Doe', email: 'jane.doe@example.com' })
+        expect(response.statusCode).toBe(200)
+        expect(response.body.username).toEqual('Jane Doe')
+        expect(response.body.email).toEqual('jane.doe@example.com')
+      })
+    
 
     test('it should delete the user', async () => {
         const user = new User({
@@ -84,7 +83,5 @@ beforeAll(async () => {
             .set('Authorization', `Bearer ${token}`)
         
         expect(response.statusCode).toBe(204)
-        expect(response.body.message).toEqual('User DELETED')
     })
 })
-

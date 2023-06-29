@@ -9,8 +9,12 @@
   "scripts": {
     "test": "jest",
     "start": "node server.js",
+    "load": "artillery run artillery.yml",
     "dev": "nodemon"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },  
   "keywords": [],
   "author": "",
   "license": "ISC",

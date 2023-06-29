@@ -69,10 +69,10 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email })
+        const user = req.user
         const updates = Object.keys(req.body)
-        updates.forEach(update => req.user[update] = req.body[update])
-        await req.user.save()
+        updates.forEach(update => user[update] = req.body[update])
+        await user.save()
         res.json(user)
     } catch (error) {
         res.status(400).json({ message: error.message })

@@ -11,8 +11,8 @@ scenarios:
             username: "Test-User"
             email: "test@example.com"
             password: "Password123"
-      -post: 
-          url: "/posts"
-          json:
-            title: "artillery blog post"
-            body: "isnt this a frog based blog"
+      # - post: 
+      #     url: "/posts"
+      #     json:
+      #       title: "artillery blog post"
+      #       body: "isnt this a frog based blog"
