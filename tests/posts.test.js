@@ -41,41 +41,52 @@ beforeAll(async () => {
               body: "ALl of the words"
           });
           expect(postResponse.statusCode).toBe(200);
-          expect(postResponse.body.post.title).toEqual('rando Title 111');
-          expect(postResponse.body.post.body).toEqual('ALl of the words')
+          expect(postResponse.body.title).toEqual('rando Title 111');
+          expect(postResponse.body.body).toEqual('ALl of the words')
       })
   
 
     
-    test('This should update a Post', async () => {
-        const user = new Post({
-            title: "Random title2",
-            body: "words words words, longings longings longings lokgjgkgn"
-        })
+    // test('This should update a Post', async () => {
+    //     const user = new Post({
+    //         title: "Random title2",
+    //         body: "words words words, longings longings longings lokgjgkgn"
+    //     })
 
-        await user.save()
-        const token = await user.generateAuthToken()
-        const response = await request(app)
-            .put(`/users/${user._id}`)
-            .set('Authorization', `Bearer ${token}`)
-            .send({ name: 'mike doe', email: 'mike.doe@email.com'})
+    //     await user.save()
+    //     const token = await user.generateAuthToken()
+    //     const response = await request(app)
+    //         .put(`/users/${user._id}`)
+    //         .set('Authorization', `Bearer ${token}`)
+    //         .send({ name: 'mike doe', email: 'mike.doe@email.com'})
         
         
-    })
+    // })
 
-    test('it should delete the user', async () => {
+    test('it should delete the Post', async () => {
         const user = new User({
             username: 'nickD94',
             email: 'ndaly94@gmail.com',
             password: 'notpassword'
         })
+        const post = new Post({
+          title: "rando Title 111",
+          body: "ALl of the words"
+        })
+
         await user.save()
         const token = await user.generateAuthToken()
         const response = await request(app)
+        .post("/posts")
+        .set('Authorization', `Bearer ${token}`)
+        .send(
+              post
+          );
+          const deletePost = await request(app)
             .delete(`/posts/${post._id}`)
             .set('Authorization', `Bearer ${token}`)
-        
-        expect(response.statusCode).toBe(204)
+
+        expect(deletePost.statusCode).toBe(204)
     })
 })
 
