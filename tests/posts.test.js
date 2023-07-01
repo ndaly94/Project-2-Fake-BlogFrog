@@ -27,32 +27,30 @@ beforeAll(async () => {
 
   describe("Test post endpoints", () => {
     test("It should create a  new post", async () => {
-
-    })
-
-    test('A User is Logged In', async () => {
-        const user = new User({
-            username: "JaneDoe25",
-            email: "jane.doe@email.com",
-            password: 'janedoepassword',
-        })
+        // insert the code to authenticate a user here
+        const user = new User({ username: 'John Doe', email: 'john.doe@example.com', password: 'password123' })
         await user.save()
+        const token = await user.generateAuthToken()
 
-        const response = await request(app)
-        .post('/users/login')
-        .send({ email: 'jane.doe@email.com', password: 'janedoepassword' })
+        //then send in the post as the post needs to be authenticated by a user login.
+        const postResponse = await request(app)
+        .post("/posts")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+              title: "rando Title 111",
+              body: "ALl of the words"
+          });
+          expect(postResponse.statusCode).toBe(200);
+          expect(postResponse.body.post.title).toEqual('rando Title 111');
+          expect(postResponse.body.post.body).toEqual('ALl of the words')
+      })
+  
+
     
-    expect(response.statusCode).toBe(200)
-    expect(response.body.user.username).toEqual('JaneDoe25')
-    expect(response.body.user.email).toEqual('jane.doe@email.com')
-    expect(response.body).toHaveProperty('token')
-    })
-
-    test('This should update a user', async () => {
-        const user = new User({
-            username: 'j doe',
-            email: 'jdoe@email.com',
-            password: 'jdoepassword'
+    test('This should update a Post', async () => {
+        const user = new Post({
+            title: "Random title2",
+            body: "words words words, longings longings longings lokgjgkgn"
         })
 
         await user.save()
@@ -74,7 +72,7 @@ beforeAll(async () => {
         await user.save()
         const token = await user.generateAuthToken()
         const response = await request(app)
-            .delete(`/users/${user._id}`)
+            .delete(`/posts/${post._id}`)
             .set('Authorization', `Bearer ${token}`)
         
         expect(response.statusCode).toBe(204)

@@ -1,3 +1,6 @@
+# Pre-Requisites 
+
+Node.js and nodemon are required to be installed in thei sfile or gloally on the machine that is running it.
 # Installation Instructions:
 ## 1. Create an empty repo on your local machine and cd into it
 ## 2. Go to https://github.com/ndaly94/Project-2-Fake-BlogFrog and go to the "code" dropdown menu. Select SSH and copy and paste
@@ -6,7 +9,11 @@
 ## 5. Install the primary dependencies with the command "npm i express bcrypt dotenv jsonwebtoken mongodb-memory-server mongoose morgan"
 ## 6. Install the dev dependencies with the command "npm i --save-dev supertest jest mongodb-memory-server artilery"
 
-#Dependencies needed to run:
+# Diagram and Wireframe
+
+![Alt text](User-Posts-Diagram.jpeg)
+
+# Dependencies needed to run:
 
 Express, Node, dotenv, MogoDB, Mongoose, bcrypt, jwt, morgan, MongoDB-Memory-Server, Jest, Supertest
 To run in dev mode nodemon must be installed globally. To run "DEV" type 'npm run dev' in the terminal.
