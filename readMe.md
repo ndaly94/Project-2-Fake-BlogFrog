@@ -6,8 +6,8 @@ Node.js and nodemon are required to be installed in thei sfile or gloally on the
 ## 2. Go to https://github.com/ndaly94/Project-2-Fake-BlogFrog and go to the "code" dropdown menu. Select SSH and copy and paste
 ## 3. In the empty directory type in "git clone <paste SSH here>" and hit enter
 ## 4. Open the repo in VS Code by typing code . in the command line
-## 5. Install the primary dependencies with the command "npm i express bcrypt dotenv jsonwebtoken mongodb-memory-server mongoose morgan"
-## 6. Install the dev dependencies with the command "npm i --save-dev supertest jest mongodb-memory-server artilery"
+## 5. Install the primary dependencies with the command "npm i" after cd-ing into the directory
+
 
 # Diagram and Wireframe
 

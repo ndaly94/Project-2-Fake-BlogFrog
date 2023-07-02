@@ -69,22 +69,25 @@ beforeAll(async () => {
             email: 'ndaly94@gmail.com',
             password: 'notpassword'
         })
+
+        await user.save()
+        const token = await user.generateAuthToken()
+
         const post = new Post({
           title: "rando Title 111",
           body: "ALl of the words"
         })
 
-        await user.save()
-        const token = await user.generateAuthToken()
-        const response = await request(app)
-        .post("/posts")
-        .set('Authorization', `Bearer ${token}`)
-        .send(
-              post
-          );
-          const deletePost = await request(app)
-            .delete(`/posts/${post._id}`)
-            .set('Authorization', `Bearer ${token}`)
+        await post.save()
+
+        // const response = await request(app)
+        // .post("/posts")
+        // .set('Authorization', `Bearer ${token}`)
+        // .send({ post });
+        
+        const deletePost = await request(app)
+             .delete(`/posts/${post._id}`)
+             .set('Authorization', `Bearer ${token}`)
 
         expect(deletePost.statusCode).toBe(204)
     })
