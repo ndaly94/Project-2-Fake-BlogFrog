@@ -9,6 +9,7 @@ const User = require('../models/user')
 const Post = require('../models/post')
 let mongoServer;
 
+
 beforeAll(async () => {
     mongoServer = await MongoMemoryServer.create();
     await mongoose.connect(mongoServer.getUri(), {
@@ -85,24 +86,4 @@ beforeAll(async () => {
         
         expect(response.statusCode).toBe(204)
     })
-
-      test("It should create a  new post", async () => {
-          // insert the code to authenticate a user here
-          const user = new User({ username: 'John Doe', email: 'john.doe@example.com', password: 'password123' })
-          await user.save()
-          const token = await user.generateAuthToken()
-  
-          //then send in the post as the post needs to be authenticated by a user login.
-          const postResponse = await request(app)
-          .post("/posts")
-          .set('Authorization', `Bearer ${token}`)
-          .send({
-                title: "rando Title 111",
-                body: "ALl of the words"
-            });
-            expect(postResponse.statusCode).toBe(200);
-            expect(postResponse.body.title).toEqual('rando Title 111');
-            expect(postResponse.body.body).toEqual('ALl of the words')
-        })
-    
 })

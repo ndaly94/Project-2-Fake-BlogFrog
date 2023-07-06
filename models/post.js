@@ -5,7 +5,7 @@ const postSchema = new Schema ({
     title: { type: String, required: true},
     body: { type: String, required: true },
     // link the posts to a specific user
-    user: { type: Schema.Types.ObjectId, required: true, ref: 'User' }
+    user: { type: Schema.Types.ObjectId, ref: 'User' }
 }, {
     timestamps: true
 })
