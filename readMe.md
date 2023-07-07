@@ -7,6 +7,8 @@ Node.js and nodemon are required to be installed in thei sfile or gloally on the
 ## 3. In the empty directory type in "git clone <paste SSH here>" and hit enter
 ## 4. Open the repo in VS Code by typing code . in the command line
 ## 5. Install the primary dependencies with the command "npm i" after cd-ing into the directory
+## 6. Touch a .env which has your mongoURI info and Secret, do not share this with anyone
+
 
 
 # Diagram and Wireframe
@@ -73,3 +75,5 @@ Additionally, after completing that portion of the troubleshooting I individuall
 While attempting to create testing routes for my app I ran into compatability issues regarding jest and Node.js. Looking into my package.json I found that when initially installing jest it had installed on version 25 which was an outdated version. After following this link: https://mongoosejs.com/docs/jest.html#recommended-testenvironment. I found that jest before version 26 were made to be used in JSDom and to use Node you either have to upgrade or change the testing enviornment. I unfortunately could not find where in the node_modules/ the testing enviorment change was so I opted to update the jest version. npm update jest refused to work so I opted to uninstall jest and reinstall forcing it to install the current version, 29.5.0. I did this with the following command npm i jest@29
 
 While creating the artillery testing I also encountered an issue with 400 errors being returned. My first test in the batch of 60 would come back 200 but the other 59 would be 400. I attempted to troubleshoot this by looking up the documentation before realizing that the schema requires a unique username and password. Upon realizing this I inserted JS syntax that randomizes the strings sent over in the corresponding values to the server. 
+
+Finally, my laptop screen on my macbook died on the night before the project was due. Thankfully I have a 2015 Macbook Pro which I am using to finsih the work.
