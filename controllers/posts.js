@@ -36,13 +36,16 @@ exports.showOnePost = async function (req, res){
 
 
 exports.updatePosts = async function(req, res){
-    try{
-        const post = await Post.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-        res.json(post)
-    } catch(error){
-        res.status(400).json({ message: error.message })
-    }
-}
+    try {
+        const post = await Post.findOneAndUpdate({ _id: req.params.id }, req.body, {
+          new: true,
+        });
+        res.json(post);
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+      }
+    };
+
 
 exports.deletePost = async function(req, res){
     try {
