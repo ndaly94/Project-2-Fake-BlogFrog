@@ -4,7 +4,7 @@
 # Installation Instructions:
 ## 1. Create an empty repo on your local machine and cd into it
 ## 2. Go to https://github.com/ndaly94/Project-2-Fake-BlogFrog and go to the "code" dropdown menu. Select SSH and copy and paste
-## 3. In the empty directory type in "git clone <paste SSH here>" and hit enter
+## 3. In the empty directory type in "git clone paste SSH here" and hit enter
 ## 4. Open the repo in VS Code by typing code . in the command line
 ## 5. Install the primary dependencies with the command "npm i" after cd-ing into the directory
 ## 6. Touch a .env which has your mongoURI info and Secret, do not share this with anyone
