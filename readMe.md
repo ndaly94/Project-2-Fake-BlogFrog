@@ -15,6 +15,8 @@
 
 ![Alt text](User-Posts-Diagram.jpeg)
 
+![Alt text](<New Note.jpeg>)
+
 # Dependencies needed to run:
 
 #### Express, Node, dotenv, MogoDB, Mongoose, bcrypt, jwt, morgan, MongoDB-Memory-Server, Jest, Supertest
